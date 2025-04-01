@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { Link } from 'react-router'
 import {
   Dialog,
   DialogPanel,
@@ -22,6 +23,7 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
+import Searchbar from './SearchBar'
 
 const products = [
   { name: 'Analytics', description: 'Get a better understanding of your traffic', href: '#', icon: ChartPieIcon },
@@ -182,7 +184,9 @@ export default function Header() {
                 >
                   Company
                 </a>
+                  <Searchbar />
               </div>
+             
               <div className="py-6">
                 <a
                   href="#"

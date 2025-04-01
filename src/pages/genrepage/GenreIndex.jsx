@@ -1,10 +1,12 @@
 import { Link } from "react-router";
+import { useState, useEffect } from "react";
+import useFetchSolution from "../../hook/useFetchSolution";
 import { useParams } from "react-router";
 import CardGame from "../../components/CardGame";
 
 export function GenrePage() {
     const { genre } = useParams ();
-    
+    // const { data, error } = useFetchSolution(initialUrl);
     const [data, setData] = useState(null);
     const [error, setError] = useState(null);
    
@@ -33,12 +35,18 @@ export function GenrePage() {
 
     return (
         <>
-           <h1>Welcome to {genre} page </h1>
-           <div className="grid-games-list">
-                {error && <article>{error}</article>}
-                {data && data.results.map ( (game) => <CardGame key={game.id} 
-                game={game} 
-                />)}
+
+            <div className="grid">
+                <h1 className="text-3xl text-center my-2">Welcome to {genre} page</h1>
+                {error && <div className="text-red-500">{error}</div>}
+                
+                {data && (
+                    <div className="flex flex-wrap justify-center gap-6 ">
+                        {data && data.results.map ( (game) => <CardGame key={game.id} 
+                            game={game}/>
+                        )}
+                    </div>
+                )}
             </div>
         </>
     )

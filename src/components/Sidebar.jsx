@@ -26,6 +26,7 @@ import {
   ChevronDownIcon,
   CubeTransparentIcon,
 } from "@heroicons/react/24/outline";
+
  
 export default function Sidebar() {
   const [open, setOpen] = React.useState(0);
@@ -36,7 +37,7 @@ export default function Sidebar() {
   };
  
   return (
-    <Card className="h-[calc(100vh-2rem)] w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5">
+    <Card className="h-full min-h-screen w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5">
       <div className="mb-2 flex items-center gap-4 p-4">
         <img src="https://docs.material-tailwind.com/img/logo-ct-dark.png" alt="brand" className="h-8 w-8" />
         <Typography variant="h5" color="blue-gray">
@@ -95,7 +96,9 @@ export default function Sidebar() {
           <ListItem className="p-0" selected={open === 2}>
             <AccordionHeader onClick={() => handleOpen(2)} className="border-b-0 p-3">
               <ListItemPrefix>
-                <ShoppingBagIcon className="h-5 w-5" />
+              <Typography color="blue-gray" className="mr-auto font-normal">
+               🕹️ 
+              </Typography>
               </ListItemPrefix>
               <Typography color="blue-gray" className="mr-auto font-normal">
                Generi

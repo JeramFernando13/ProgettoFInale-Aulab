@@ -1,29 +1,30 @@
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
+import useFetchSolution from "../../hook/useFetchSolution";
 import { initialUrl } from "../../config";
 import CardGame from "../../components/CardGame";
 
 
 export default function HomePage() {
-    const [data, setData] = useState(null);
-    const [error, setError] = useState(null);
-    
-    const load = async () => {
-        try {
-            const response = await fetch(initialUrl);
-            if (!response.ok) {
-                throw new Error(response.statusText);
-            }
-            const json = await response.json();
-            setData(json);
-        } catch (error) {
-            setError(error.message);
-            setData(null);
-        }
-    };
+    const { data, error } = useFetchSolution(initialUrl);
+    // const [data, setData] = useState(null);
+    // const [error, setError] = useState(null);
+    // const load = async () => {
+    //     try {
+    //         const response = await fetch(initialUrl);
+    //         if (!response.ok) {
+    //             throw new Error(response.statusText);
+    //         }
+    //         const json = await response.json();
+    //         setData(json);
+    //     } catch (error) {
+    //         setError(error.message);
+    //         setData(null);
+    //     }
+    // };
 
-    useEffect(() => {
-        load();
-    }, []);
+    // useEffect(() => {
+    //     load();
+    // }, []);
    
    
    
@@ -34,7 +35,7 @@ export default function HomePage() {
                 {error && <div className="text-red-500">{error}</div>}
                 
                 {data && (
-                    <div className="grid grid-cols-1  md:grid-cols-2  lg:grid-cols-3 gap-6 mx-auto mt-6 ">
+                    <div className="flex flex-wrap justify-center gap-6 ">
                         {data.results.map((game) => (
                             <CardGame key={game.id} game={game} />
                         ))}

@@ -1,7 +1,13 @@
 import { useState, useEffect } from "react";
+// import useFetchSolution from "../../hook/useFetchSolution";
 import { Link } from "react-router";
 import {
-  AccordionBody,
+  AccordionBody, 
+  List,
+  ListItem,
+  ListItemPrefix,
+  Avatar,
+  Typography,
 } from "@material-tailwind/react";
 
 
@@ -9,6 +15,7 @@ import { genresUrl } from "../config";
 
 export default function GenresDropDown() {
   const [genres, setGenres] = useState(null);
+  // const { data, loading, error, updateUrl } = useFetchSolution(initialUrl);
   const [error, setError] = useState(null);
 
   const load = async () => {
@@ -31,17 +38,30 @@ export default function GenresDropDown() {
 
   return (
     <>
+                {/* <li key={genre.id}>
+                  <img src={genre.background_image} alt={genre.name} />
+                  </li> */}
       <AccordionBody className="py-1">
         {error && <small>{error}</small> }
         <ul className="p-0">
+          <List>
              {genres && genres.results.map((genre) => (
-                <li key={genre.id}>
+               <ListItem key= {genre.id}>
+            {/* <ListItemPrefix>
+              <Avatar variant="circular" src={genre.background_image} alt={genre.name}/>
+              </ListItemPrefix> */}
+            <div>
+              <Typography variant="h6" color="blue-gray">
                 <Link to={`/games/${genre.slug}`}>{genre.name}</Link>
-                </li>
+                
+              </Typography>
+              
+            </div>
+          </ListItem>
             ))}
+            </List>
         </ul>
        
-            <h3>Singoli generi... </h3>
       </AccordionBody>
       
     </>
