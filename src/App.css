@@ -1,0 +1,31 @@
+
+/* .sideCust{
+    position: fixed;
+margin-top: 5%;
+    z-index:999;
+} */
+
+.navCust {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: white;
+    color: white;
+    padding: 10px 20px;
+    z-index: 1000;
+    transition: top 0.5s ;
+  }
+
+  
+  .visible {
+    top: 0; 
+  }
+  
+  .hidden {
+    top: -60px; 
+  }
+  
+  body{
+    padding-top: 60px;
+  }

@@ -1,6 +1,6 @@
 import z from 'zod';
 
-const passwordRegex = /(?=.*[A-Z]) (?=.*[a-z]) (?=.*\d).*$/;
+const passwordRegex = /(?=.*[A-Z])(?=.*[a-z])(?=.*\d).*$/;
 const passwordError = "Password must contain at least one uppercase letter, one lowercase letter,and one number.";
 
 export const FormSchema = z.object({

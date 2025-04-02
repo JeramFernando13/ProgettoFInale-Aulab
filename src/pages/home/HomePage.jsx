@@ -3,7 +3,6 @@ import useFetchSolution from "../../hook/useFetchSolution";
 import { initialUrl } from "../../config";
 import CardGame from "../../components/CardGame";
 
-
 export default function HomePage() {
     const { data, error } = useFetchSolution(initialUrl);
     // const [data, setData] = useState(null);
