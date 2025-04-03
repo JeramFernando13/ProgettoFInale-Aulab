@@ -1,10 +1,14 @@
 import { Routing } from './routes/Routing'
+import SessionProvider from './context/SessionProvider'
 import './App.css'
 function App() {
 
   return (
     <>
-      <Routing />
+     
+      <SessionProvider>
+        <Routing />
+      </ SessionProvider>
       
     </>
   )

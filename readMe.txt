@@ -1,0 +1,3 @@
+problemi:
+in header,
+supabase, 
