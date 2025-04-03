@@ -7,6 +7,7 @@ import SearchPage from '../pages/searchpage/searchPage';
 import RegisterPage from '../pages/register/RegisterPage';
 import {PlatformPage} from '../pages/platformpage/PlatformPage'
 import LoginPage from '../pages/login/LoginPage';
+import AccountPage from '../pages/account/AccountPage';
 
 export function Routing(){
     return(

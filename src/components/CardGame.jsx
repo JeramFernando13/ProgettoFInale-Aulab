@@ -8,6 +8,7 @@ import {
     Button,
   } from "@material-tailwind/react";
   import LazyLoadGameImage from "./LazyLoadGameImage";
+import ToggleFavorite from "./ToggleFavorite";
    
   export default function CardGame({ game }) {
     const genres = game.genres.map((genre) => genre.name).join(", ");
@@ -36,6 +37,7 @@ import {
          <Button variant="filled" size="md" className="transition-transform transform hover:scale-105 border">
             <Link to={`/games/${game.slug}/${game.id}`}>{game.name}</Link>
          </Button>
+          <ToggleFavorite />
         </CardFooter>
       </Card>
     );

@@ -1,3 +1,4 @@
 problemi:
 in header,
-supabase, 
+non vedo la pag dettaglio bene 
+ho un problema con le favorites

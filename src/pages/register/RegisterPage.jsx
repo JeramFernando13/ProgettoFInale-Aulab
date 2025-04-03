@@ -4,7 +4,7 @@ import {
     getErrors,
     getFieldError,
 } from '../../lib/validationForm';
-
+import supabase from "../../supabase/supabase-client";
 import { useNavigate } from "react-router";
 import styled from 'styled-components'
 import { Button } from "@material-tailwind/react";

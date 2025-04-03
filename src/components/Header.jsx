@@ -1,12 +1,13 @@
 'use client'
 import {useContext, React} from 'react';
 import { useState, useEffect } from 'react'
+import SessionContext from '../context/SessionContext';
 
 import GenresDropDown from '../components/GenresDorpDown'
 import PlatformsDropDown from "./PlatformsDropDown";
 
-import { Link } from 'react-router'
-//! import supabase from '../supabase/supabase-client';
+import { Link, useNavigate } from 'react-router'
+import supabase from '../supabase/supabase-client';
 import {
   Dialog,
   DialogPanel,
@@ -43,36 +44,36 @@ import {
 
 
 export default function Header() {
-  const [session, setSession] = useState(null);
+  const navigate = useNavigate;
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [open, setOpen] = React.useState(0);
+  const [open, setOpen] = useState(0);
+  const {session} = useContext(SessionContext); 
   
   const [showNavbar, setShowNavbar] = useState(true);
 
-  // const {session} = useContext(SessionContext); 
    
   const handleOpen = (value) => {
     setOpen(open === value ? 0 : value);
   };
 
-  const getSession = async () => {
-    const {data, error } = await supabase.auth.getSession();
-    if (error) setSession(null);
-    console.log(data);
-    setSession(data);
-  };
+  // const getSession = async () => {
+  //   const {data, error } = await supabase.auth.getSession();
+  //   if (error) setSession(null);
+  //   console.log(data);
+  //   setSession(data);
+  // };
 
   const singOut = async () => {
-    const {error} = await supabase.auth.singOut()
+    const {error} = await supabase.auth.signOut()
     if (error) console.log(error);
     alert('Signed out ')
-    getSession();
+    navigate('/');
     
   }
 
-  useEffect (() => {
-    getSession();
-  }, []);
+  // useEffect (() => {
+  //   getSession();
+  // }, []);
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
@@ -271,6 +272,9 @@ export default function Header() {
                 {session ? (
                   <div className="py-6">
                       {/* da fare la modale  */}
+                      <Link to="/account" className="text-grey-900 -mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">
+                      Account Setting
+                    </Link>
                     <Link to="/" onClick={singOut} className="text-red-500 -mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">
                       Logout
                     </Link>
