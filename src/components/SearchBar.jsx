@@ -18,12 +18,12 @@ export default function Searchbar() {
     };
     return (
         <>
-            <form onSubmit={handleSearch} className="flex items-center max-w-md mx-auto bg-white rounded-full shadow-lg overflow-hidden border border-gray-300">   
+            <form onSubmit={handleSearch} className="flex items-center max-w-md mx-auto bg-white rounded-full shadow-lg overflow-hidden border border-gray-300 ">   
                 <div className="relative w-full">
                     <input
                         type="text"
                         name="search"
-                        className="w-full py-2 px-4 text-gray-700 focus:outline-none"
+                        className="w-full max-w-md py-2 px-4 text-gray-700 focus:outline-none"
                         placeholder={ariaInvalid ? "Devi cercare qualcosa" : "Cerca un gioco..."}
                         onChange={(event) => setSearch(event.target.value)}
                         value={search}

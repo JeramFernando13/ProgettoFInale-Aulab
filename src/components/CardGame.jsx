@@ -8,7 +8,7 @@ import {
     Button,
   } from "@material-tailwind/react";
   import LazyLoadGameImage from "./LazyLoadGameImage";
-import ToggleFavorite from "./ToggleFavorite";
+
    
   export default function CardGame({ game }) {
     const genres = game.genres.map((genre) => genre.name).join(", ");
@@ -34,10 +34,10 @@ import ToggleFavorite from "./ToggleFavorite";
         </CardBody>
 
         <CardFooter className="pt-4 pb-6 flex justify-center">
-         <Button variant="filled" size="md" className="transition-transform transform hover:scale-105 border">
-            <Link to={`/games/${game.slug}/${game.id}`}>{game.name}</Link>
+         <Button variant="" size="md" className="transition-transform transform hover:scale-105 border rounded-full">
+            <Link to={`/games/${game.slug}/${game.id}`}>Show more</Link>
          </Button>
-          <ToggleFavorite />
+         
         </CardFooter>
       </Card>
     );

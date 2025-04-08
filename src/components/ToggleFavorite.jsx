@@ -1,57 +1,34 @@
 import { useState, useContext } from "react";
-import supabase from '../supabase/supabase-client'
-import SessionContext from "../context/SessionContext";
-import { IconButton  } from "@material-tailwind/react";
+import { FaHeart, FaRegHeart } from 'react-icons/fa';
+import FavoritesContext from "../context/FavoritesContext";
  
-export default function ToggleFavorite({data}) {
-    const {session} = useContext(SessionContext);
-    const [favorites, setFavorites] = useState([]);
+export default function ToggleFavorite({ data }) {
+    const {favorites, addFavorites, removeFavorites} = useContext(FavoritesContext);
 
     const isFavorite = () => favorites.find((el) => +el.game_id === data?.id);
 
-    const addFavorites = async (game) => {
-        if (!game || !game.id) {
-            console.error("Errore: Il gioco è undefined o non ha un ID valido.");
-            return;
-        }
     
-        if (!session?.user?.id) {
-            alert("Devi essere autenticato per aggiungere ai preferiti!");
-            return;
-        }
-    
-        const { data: insertedData, error } = await supabase
-            .from('favorites')
-            .insert([
-                {
-                    user_id: session.user.id,
-                    game_id: game.id,
-                    game_name: game.name,
-                    game_image: game.background_image,
-                },
-            ])
-            .select();
-    
-        if (error) {
-            alert(error.message);
-        } else {
-            setFavorites(insertedData);
-        }
-    };
-    
-    // Assicurati che `data` sia definito prima di chiamare addFavorites
     return (
-        <a href="#buttons-with-link" onClick={() => data && addFavorites(data)}>
-            {isFavorite() ? (
-                <IconButton>
-                    <i className="fas fa-heart" />
-                </IconButton>
-            ) : (
-                <IconButton variant="gradient">
-                    <i className="fas fa-heart" />
-                </IconButton>
-            )}
-        </a>
+        <>
+        {isFavorite() ? (  
+            <button
+                onClick={() => removeFavorites(data.id)}
+                className="flex items-center space-x-2 py-2 px-4 bg-red-500 text-white rounded-full hover:bg-red-600 transition duration-200">
+                <span>remove Favorites</span>
+                <FaHeart className="text-xl" />
+            </button>
+           
+        ):(
+           <button
+                onClick={() => addFavorites(data)}
+                className="flex items-center space-x-2 py-2 px-4 bg-red-500 text-white rounded-full hover:bg-red-600 transition duration-200">
+                <span>add Favorites</span>
+                <FaRegHeart className="text-xl" />
+            </button>
+        )}
+            
+           
+        </>
     );
 
- }
+}

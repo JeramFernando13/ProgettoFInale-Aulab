@@ -58,7 +58,8 @@ export default function Sidebar() {
            <GenresDropDown />
           </AccordionBody>
         </Accordion>
-        <Accordion
+        
+        {/* <Accordion
           open={open === 2}
           icon={
             <ChevronDownIcon
@@ -80,7 +81,7 @@ export default function Sidebar() {
           <AccordionBody className="py-1">
             <PlatformsDropDown />
           </AccordionBody>
-        </Accordion>
+        </Accordion> */}
         <hr className="my-2 border-blue-gray-50" />
         
       </List>

@@ -40,7 +40,8 @@ import {
   AccordionHeader,
   AccordionBody,
 } from "@material-tailwind/react";
-
+import ThemeToggle from '../components/ThemeToggle';
+import { ToggleGroup } from '@subframe/core/dist/cjs/components/toggle-group';
 
 
 export default function Header() {
@@ -56,12 +57,7 @@ export default function Header() {
     setOpen(open === value ? 0 : value);
   };
 
-  // const getSession = async () => {
-  //   const {data, error } = await supabase.auth.getSession();
-  //   if (error) setSession(null);
-  //   console.log(data);
-  //   setSession(data);
-  // };
+ 
 
   const singOut = async () => {
     const {error} = await supabase.auth.signOut()
@@ -71,9 +67,6 @@ export default function Header() {
     
   }
 
-  // useEffect (() => {
-  //   getSession();
-  // }, []);
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
@@ -99,7 +92,7 @@ export default function Header() {
   return (
     <>
     
-      <header className="bg-white">
+      <header className="bg-white dark:bg-black dark:text-white">
         <nav aria-label="Global" className={`navbar navCust mx-auto flex max-w items-center justify-between p-6 lg:px-8 ${showNavbar ? "visible" : "hidden"}`}>
           {/* logo  */}
           <div className="flex lg:flex-1">
@@ -112,7 +105,12 @@ export default function Header() {
               />
             </Link>
           </div>
-            
+         
+          {/* search bar  */}
+          <PopoverGroup className="hidden  lg:flex lg:gap-x-12">
+            <Searchbar className=' items-center lg:flex lg:flex-1 lg:justify-end' />
+          </PopoverGroup>  
+
           {/* Account  */}
           <div className="flex lg:hidden">
             <button
@@ -125,11 +123,7 @@ export default function Header() {
             </button>
           </div>
 
-          {/* search bar  */}
-          <PopoverGroup className="hidden  lg:flex lg:gap-x-12">
-            <Searchbar className=' items-center lg:flex lg:flex-1 lg:justify-end' />
-          </PopoverGroup>
-            {/* Account  */}
+          {/* Account  */}
           <Popover className=" hidden  lg:flex lg:gap-x-12">
             <PopoverButton className="flex ml-15 gap-x-1 text-sm/6 font-semibold text-gray-900">
               <ChevronDownIcon aria-hidden="true" className="size-5 flex-none text-gray-400" />
@@ -138,7 +132,7 @@ export default function Header() {
 
             <PopoverPanel
               transition
-              className=" absolute top-full -left-8 z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white ring-1 shadow-lg ring-gray-900/5 transition data-closed:translate-y-1 data-closed:opacity-0 data-enter:duration-200 data-enter:ease-out data-leave:duration-150 data-leave:ease-in">
+              className=" absolute top-full  right-2 z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white ring-1 shadow-lg ring-gray-900/5 transition data-closed:translate-y-1 data-closed:opacity-0 data-enter:duration-200 data-enter:ease-out data-leave:duration-150 data-leave:ease-in">
               {/* condizione session  */}
               {session ? (
                 <div className="p-4">
@@ -187,7 +181,12 @@ export default function Header() {
                 
               
             </PopoverPanel>
-          </Popover> 
+          </Popover>
+           
+          {/* theme button  */}
+          {/* <div className = 'ml-9 mx-3'>
+            <ThemeToggle />
+          </div> */}
         </nav>
         {/* on mobile  */}
         <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
@@ -195,7 +194,7 @@ export default function Header() {
           <DialogPanel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
             <div className="flex items-center justify-between">
               <Link to="/" className="-m-1.5 p-1.5">
-                <span className="sr-only">Your Company</span>
+                
                 <img
                   alt=""
                   src="public/images/logoReHacktor.png"
@@ -243,7 +242,8 @@ export default function Header() {
                     <GenresDropDown />
                     </AccordionBody>
                   </Accordion>
-                  <Accordion
+
+                  {/* <Accordion
                     open={open === 2}
                     icon={
                       <ChevronDownIcon
@@ -265,7 +265,7 @@ export default function Header() {
                     <AccordionBody className="py-1">
                       <PlatformsDropDown />
                     </AccordionBody>
-                  </Accordion>
+                  </Accordion> */}
                   <hr className="my-2 border-blue-gray-50" />
                 </List>
 

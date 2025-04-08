@@ -1,14 +1,17 @@
 import { useState } from "react";
 import { Link } from "react-router";
+import { useNavigate } from "react-router";
+import supabase from '../../supabase/supabase-client';
+import styled from 'styled-components'
+import { Button } from "@material-tailwind/react";
+import toast from "react-hot-toast"; 
+
 import {
-    ConfirmSchema,
+    FormSchemaLogin,
+    ConfirmSchemaLogin,
     getErrors,
     getFieldError,
 } from '../../lib/validationForm';
-import supabase from '../../supabase/supabase-client';
-import { useNavigate } from "react-router";
-import styled from 'styled-components'
-import { Button } from "@material-tailwind/react";
 // import { Button } from "@headlessui/react";
 // import "./register.css";
     const StyledWrapper = styled.div`
@@ -121,7 +124,7 @@ import { Button } from "@material-tailwind/react";
         color: white;
     }`; 
 
-export default function RegisterPage() {
+export default function LoginPage() {
     const navigate = useNavigate();
 
     const [formSubmitted, setFormSubmitted] = useState(false);
@@ -129,36 +132,28 @@ export default function RegisterPage() {
     const [touchedFields, setTouchedFields] = useState({});
     const [formState, setFormState] = useState({
         email: "",
-        firstName:"",
-        lastName:"",
-        username: "",
         password:"",
     });
 
     const onSubmit = async (event) => {
     event.preventDefault();
     setFormSubmitted(true);
-    const { error, data } = ConfirmSchema.safeParse(formState);
+    const { error, data } = ConfirmSchemaLogin.safeParse(formState);
     if (error) {
       const errors = getErrors(error);
       setFormErrors(errors);
       console.log(errors);
     } else {
-      let { error } = await supabase.auth.signUp({
+        console.log(data);
+        
+      let { error } = await supabase.auth.signInWithPassword({
         email: data.email,
-        password: data.password,
-        options: {
-          data: {
-            first_name: data.firstName,
-            last_name: data.lastName,
-            username: data.username
-          }
-        }
+        password: data.password
       });
       if (error) {
-        alert("Logging up error 👎🏻!");
+        toast.error("Sign in error 👎🏻!");
       } else {
-        alert("Logged up 👍🏻!");
+        toast.success("Signed in 👍🏻!");
         await new Promise((resolve) => setTimeout(resolve, 1000));
         navigate("/");
       }
@@ -166,7 +161,7 @@ export default function RegisterPage() {
   };
 
     const onBlur = (property) => () => {
-        const message = getFieldError(property, formState [property]);
+        const message = getFieldError(FormSchemaLogin, property, formState[property]);
         setFormErrors ((prev) => ({ ...prev, [property]: message }));
         setTouchedFields ((prev) => ({...prev, [property]: true }));
     };
@@ -234,7 +229,7 @@ export default function RegisterPage() {
                     />
                 </div>
                 <div>
-                    <Link  to="/register">Are you new here? Register now</Link>
+                    <Link  to="/register" className="text-white">Are you new here? Register now</Link>
                    
                 </div>
                 
@@ -243,6 +238,7 @@ export default function RegisterPage() {
                 </div>
             </form> 
         </ StyledWrapper >
+        
     )
     
     

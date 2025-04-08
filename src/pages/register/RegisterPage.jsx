@@ -8,6 +8,7 @@ import supabase from "../../supabase/supabase-client";
 import { useNavigate } from "react-router";
 import styled from 'styled-components'
 import { Button } from "@material-tailwind/react";
+import toast from "react-hot-toast";
 // import { Button } from "@headlessui/react";
 // import "./register.css";
     const StyledWrapper = styled.div`
@@ -155,9 +156,9 @@ export default function RegisterPage() {
         }
       });
       if (error) {
-        alert("Signing up error 👎🏻!");
+        toast.error("Signing up error 👎🏻!");
       } else {
-        alert("Signed up 👍🏻!");
+        toast.success("Signed up 👍🏻!");
         await new Promise((resolve) => setTimeout(resolve, 1000));
         navigate("/");
       }

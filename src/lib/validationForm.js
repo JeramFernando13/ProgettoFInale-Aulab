@@ -10,8 +10,16 @@ export const FormSchema = z.object({
     username: z.string().min(3),
     password: z.string().min(8).regex(passwordRegex, passwordError),
 });
-
 export const ConfirmSchema = FormSchema.refine((data) => data);
+
+
+export const FormSchemaLogin = z.object({
+    email: z.string().email(), 
+    password: z.string().min(8).regex(passwordRegex, passwordError),
+});
+
+export const ConfirmSchemaLogin = FormSchemaLogin.refine((data) => data);
+
 
 export function getFieldError(property, value){
     const {error} = FormSchema.shape[property].safeParse(value);
@@ -26,5 +34,5 @@ export const getErrors = (error) =>
         const message = all[path] ? all[path] + ", " : "";
         all[path] = message + issue.message;
         return all; 
-    });
+    }, {});
 
