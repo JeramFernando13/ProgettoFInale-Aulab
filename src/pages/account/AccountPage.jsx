@@ -7,6 +7,7 @@ import AvatarComponent from "../../components/Avatar";
 
 import { Button } from "@material-tailwind/react";
 import { Avatar } from "@material-tailwind/react";
+import toast from "react-hot-toast";
 
 export default function AccountPage() {
     const { session } = useContext(SessionContext);
@@ -68,11 +69,12 @@ export default function AccountPage() {
         const { error } = await supabase.from("profiles").upsert(updates);
 
         if (error) {
-            alert(error.message);
+            toast.error(error.message);
         } else {
             setAvatarUrl(avatarUrl)
         }
         setLoading(false);
+        toast.success('Updated Successfully')
     };
 
     return (

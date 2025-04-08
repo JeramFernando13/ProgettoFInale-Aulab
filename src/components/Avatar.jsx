@@ -56,20 +56,36 @@ export default function AvatarComponent({ url, size, onUpload }) {
           src={avatarUrl}
           alt="Avatar"
           className="avatar image"
-          style={{ height: size, width: size, boxShadow: "3px 3px 8px black" }}
+          style={{ height: size, width: size, borderRadius: "50%", boxShadow: "3px 3px 8px black" }}
         />
       ) : (
-        <div className="avatar no-image" style={{ height: size, width: size }} />
+        <div
+          className="avatar no-image"
+          onClick={() => document.getElementById('avatar-input').click()}
+          style={{
+            height: size,
+            width: size,
+            backgroundColor: "#ccc",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            color: "white",
+            fontWeight: "bold",
+            borderRadius: "50%",
+            cursor: "pointer"
+          }}
+        >
+          No Image
+        </div>
       )}
-      <div style={{ width: size }}>
-        <input
-          type="file"
-          id="single"
-          accept="image/*"
-          onChange={uploadAvatar}
-          disabled={uploading}
-        />
-      </div>
+      <input
+        type="file"
+        id="avatar-input"
+        accept="image/*"
+        onChange={uploadAvatar}
+        disabled={uploading}
+        style={{ display: "none" }}
+      />
     </div>
   )
 }

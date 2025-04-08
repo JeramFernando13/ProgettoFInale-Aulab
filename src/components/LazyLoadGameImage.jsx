@@ -9,7 +9,8 @@ export default function LazyLoadGameImage({ image }) {
             wrapperProps={{
                 style: {transitionDelay: "0.5s"}
             }}
-            src="{image}"
+            src={image}
+            className="w-full h-full object-cover transition duration-100 ease-in-out transform hover:scale-110"
         />
     );
 };

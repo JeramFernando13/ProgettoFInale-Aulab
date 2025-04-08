@@ -18,27 +18,28 @@ import {
       <Card 
         className="w-96 rounded-lg shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-xl mt-6 "
         key={game.id}>
-        <CardHeader color="blue-gray" className="relative h-56 rounded-t-lg overflow-hidden">
-          {/* <LazyLoadGameImage image = {image}  */}
-            <img src={game.background_image} alt={game.name} className="w-full h-full object-cover transition duration-300 ease-in-out transform hover:scale-110"
-          />
-        </CardHeader>
+      <Link to={`/games/${game.slug}/${game.id}`}>
+        
+          <CardHeader color="blue-gray" className="relative h-56 rounded-t-lg overflow-hidden">
+            <LazyLoadGameImage image={game.background_image} />
+          </CardHeader>
 
-        <CardBody>
-          <Typography variant="h3" color="blue-gray" className="mb-2">
-            {game.name}
-          </Typography>
-          <Typography variant="h5">{genres}</Typography>
-          <Typography className="font-normal">{game.released}</Typography>
-          <Typography variant="h5">Rating: {game.rating}</Typography>
-        </CardBody>
+          <CardBody>
+            <Typography variant="h3" color="blue-gray" className="mb-2">
+              {game.name}
+            </Typography>
+            <Typography variant="h5">{genres}</Typography>
+            <Typography className="font-normal">{game.released}</Typography>
+            <Typography variant="h5">Rating: {game.rating}</Typography>
+          </CardBody>
 
-        <CardFooter className="pt-4 pb-6 flex justify-center">
-         <Button variant="" size="md" className="transition-transform transform hover:scale-105 border rounded-full">
-            <Link to={`/games/${game.slug}/${game.id}`}>Show more</Link>
-         </Button>
-         
-        </CardFooter>
+          <CardFooter className="pt-4 pb-6 flex justify-center">
+          <Button size="sm" className="bg-gray-900 hover:bg-gray-800 text-white transition-transform transform hover:scale-105 border rounded-full">
+              Show more
+          </Button>
+          
+          </CardFooter>
+        </Link>
       </Card>
     );
 }
