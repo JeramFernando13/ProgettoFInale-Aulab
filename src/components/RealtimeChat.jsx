@@ -13,6 +13,7 @@ const chatContainer = {
     backgroundColor: '',
     overflowy: 'scroll'
 }
+
 dayjs.extend(relativeTime);
 
 export default function RealtimeChat({ data }){

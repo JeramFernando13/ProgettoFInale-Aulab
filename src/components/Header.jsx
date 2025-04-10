@@ -39,9 +39,15 @@ import {
   Accordion,
   AccordionHeader,
   AccordionBody,
+  Dialog as MTDialog,
+  DialogHeader,
+  DialogBody,
+  DialogFooter,
+  Button
 } from "@material-tailwind/react";
 import ThemeToggle from '../components/ThemeToggle';
 import { ToggleGroup } from '@subframe/core/dist/cjs/components/toggle-group';
+import toast from 'react-hot-toast';
 
 
 export default function Header() {
@@ -51,6 +57,7 @@ export default function Header() {
   const {session} = useContext(SessionContext); 
   
   const [showNavbar, setShowNavbar] = useState(true);
+  const [isLogoutOpen, setIsLogoutOpen] = useState(false);
 
    
   const handleOpen = (value) => {
@@ -61,8 +68,8 @@ export default function Header() {
 
   const singOut = async () => {
     const {error} = await supabase.auth.signOut()
-    if (error) console.log(error);
-    alert('Signed out ')
+    if (error) toast.error(error);
+    toast.remove('Signed out ')
     navigate('/');
     
   }
@@ -149,10 +156,12 @@ export default function Header() {
                   <div className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm/6  hover:bg-gray-50 hover:text-center">
                     
                     <div className="flex-auto">
-                      <Link to='/' onClick={singOut} className="block font-semibold text-red-500">
+                      <button
+                        onClick={() => setIsLogoutOpen(true)}
+                        className="block font-semibold text-red-500 transition duration-300 ease-in-out hover:scale-105 hover:text-red-600 "
+                      >
                         Log Out
-                        <span className="absolute inset-0" />
-                      </Link>
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -275,9 +284,12 @@ export default function Header() {
                       <Link to="/account" className="text-grey-900 -mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">
                       Account Setting
                     </Link>
-                    <Link to="/" onClick={singOut} className="text-red-500 -mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">
+                    <button
+                      onClick={() => setIsLogoutOpen(true)}
+                      className="w-full text-left text-red-500 -mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50 hover:text-center transition duration-300 ease-in-out hover:scale-105 hover:text-red-600"
+                    >
                       Logout
-                    </Link>
+                    </button>
                   </div>
                 ) : ( 
                   
@@ -294,6 +306,21 @@ export default function Header() {
             </div>
           </DialogPanel>
         </Dialog>
+       {/* confirm log out  */}
+        <MTDialog open={isLogoutOpen} handler={() => setIsLogoutOpen(false)}>
+          <DialogHeader>Confirm Logout</DialogHeader>
+          <DialogBody>
+            Are you sure you want to log out?
+          </DialogBody>
+          <DialogFooter>
+            <Button variant="text" color="gray" onClick={() => setIsLogoutOpen(false)} className="mr-1">
+              <span>Cancel</span>
+            </Button>
+            <Button size="sm" className="bg-red-500 hover:bg-red-800 text-white transition-transform transform hover:scale-105 border rounded-full">
+             Log Out
+          </Button>
+          </DialogFooter>
+        </MTDialog>
       </header>
     </>
   )

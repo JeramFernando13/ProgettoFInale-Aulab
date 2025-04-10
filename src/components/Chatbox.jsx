@@ -18,7 +18,7 @@ export default function Chatbox({ data }) {
                 {
                     profile_id: session?.user.id, 
                     profile_username: session?.user.user_metadata.username, 
-                    game_id: data. id,
+                    game_id: data.id,
                     content: message,
                 },
             ])

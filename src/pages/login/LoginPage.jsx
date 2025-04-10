@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router";
 import { useNavigate } from "react-router";
-import supabase from '../../supabase/supabase-client';
 import styled from 'styled-components'
 import { Button } from "@material-tailwind/react";
 import toast from "react-hot-toast"; 
@@ -12,9 +11,10 @@ import {
     getErrors,
     getFieldError,
 } from '../../lib/validationForm';
-// import { Button } from "@headlessui/react";
-// import "./register.css";
-    const StyledWrapper = styled.div`
+import supabase from '../../supabase/supabase-client';
+
+
+const StyledWrapper = styled.div`
 .form {
         display: flex;
         flex-direction: column;
@@ -142,13 +142,11 @@ export default function LoginPage() {
     if (error) {
       const errors = getErrors(error);
       setFormErrors(errors);
-      console.log(errors);
     } else {
-        console.log(data);
         
       let { error } = await supabase.auth.signInWithPassword({
         email: data.email,
-        password: data.password
+        password: data.password,
       });
       if (error) {
         toast.error("Sign in error 👎🏻!");

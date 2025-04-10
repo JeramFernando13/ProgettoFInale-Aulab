@@ -3,6 +3,17 @@ import z from 'zod';
 const passwordRegex = /(?=.*[A-Z])(?=.*[a-z])(?=.*\d).*$/;
 const passwordError = "Password must contain at least one uppercase letter, one lowercase letter,and one number.";
 
+const loginError = "The Password is not correct";
+
+// login 
+export const FormSchemaLogin = z.object({
+    email: z.string().email(), 
+    password: z.string().min(8).regex(passwordRegex, loginError),
+});
+
+export const ConfirmSchemaLogin = FormSchemaLogin.refine((data) => data);
+
+// registration 
 export const FormSchema = z.object({
     email: z.string().email(), 
     firstName: z.string().min(1), 
@@ -13,16 +24,8 @@ export const FormSchema = z.object({
 export const ConfirmSchema = FormSchema.refine((data) => data);
 
 
-export const FormSchemaLogin = z.object({
-    email: z.string().email(), 
-    password: z.string().min(8).regex(passwordRegex, passwordError),
-});
-
-export const ConfirmSchemaLogin = FormSchemaLogin.refine((data) => data);
-
-
 export function getFieldError(property, value){
-    const {error} = FormSchema.shape[property].safeParse(value);
+    const { error } = FormSchema.shape[property].safeParse(value);
     return error 
     ? error.issues.map((issue) => issue.message).join(", ")
     : undefined;

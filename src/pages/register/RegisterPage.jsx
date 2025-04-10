@@ -5,7 +5,7 @@ import {
     getFieldError,
 } from '../../lib/validationForm';
 import supabase from "../../supabase/supabase-client";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import styled from 'styled-components'
 import { Button } from "@material-tailwind/react";
 import toast from "react-hot-toast";
@@ -142,7 +142,6 @@ export default function RegisterPage() {
     if (error) {
       const errors = getErrors(error);
       setFormErrors(errors);
-      console.log(errors);
     } else {
       let { error } = await supabase.auth.signUp({
         email: data.email,
@@ -292,7 +291,7 @@ export default function RegisterPage() {
                     />
                 </div>
                 <div>
-                    <a  href="#"><p className="text-white">Already have an account? Login</p></a>
+                    <Link  to="/login"><p className="text-white">Already have an account? Login</p></Link>
                    
                 </div>
                 
