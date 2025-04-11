@@ -43,7 +43,7 @@ export default function RealtimeChat({ data }){
     }, [data?.id]);
 
     useEffect(() => {
-        if (data){
+        if (data) {
             getInitialMessages();
         }
         const channel = supabase
@@ -75,7 +75,7 @@ export default function RealtimeChat({ data }){
                 {messages &&
                 messages.map ((message) => (
                 <article key={message.id}>
-                    <p>{message.profile_username}</p>
+                    <p className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500">{message.profile_username}</p>
                         <small>{message.content}</small>
                     <p>{dayjs(). to(dayjs (message.created_at) )}</p>
                 </article>

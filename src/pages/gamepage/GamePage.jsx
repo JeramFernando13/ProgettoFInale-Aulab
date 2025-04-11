@@ -89,10 +89,7 @@ export function GamePage(){
                 {/* live chat - spostata sotto */}
                 <div className="style-chatbox ">
                     <div className="bg-white rounded-lg p-4">
-                        
-                        <div className=" ">
-                            <Chatbox data={data && data} />
-                        </div>
+                      <Chatbox data={data && data} />
                     </div>
                 </div>
               </div>

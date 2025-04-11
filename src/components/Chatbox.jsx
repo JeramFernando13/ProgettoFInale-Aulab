@@ -3,9 +3,10 @@ import supabase from "../supabase/supabase-client";
 import SessionContext from "../context/SessionContext";
 import { Button } from "@material-tailwind/react";
 import RealtimeChat from "./RealtimeChat";
+import toast from "react-hot-toast";
 
 export default function Chatbox({ data }) {
-    const {session } = useContext(SessionContext);
+    const { session } = useContext(SessionContext);
 
     const handleMessageSubmit = async (event) => {
         event.preventDefault();
@@ -24,7 +25,7 @@ export default function Chatbox({ data }) {
             ])
             .select();
             if (error) {
-                console.log(error);
+                toast.error(Error);
             } else {
                 inputMessage.reset();
             }
