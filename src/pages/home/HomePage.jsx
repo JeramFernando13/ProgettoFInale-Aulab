@@ -16,7 +16,7 @@ export default function HomePage() {
                 {data && (
                     <div className="flex flex-wrap justify-center gap-6 ">
                         {data.results.map((game) => (
-                            <CardGame key={game.id} game={game} />
+                            <CardGame key={game.id} game={game} className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl rounded-lg shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-xl mt-6" />
                         ))}
                     </div>
                 )}
