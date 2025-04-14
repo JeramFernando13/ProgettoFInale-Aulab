@@ -105,7 +105,7 @@ export default function Header() {
               <span className="sr-only">Your Company</span>
               <img
                 alt="Logo"
-                src='/images/logo.png'
+                src='/images/logo.svg'
                 className="h-12 w-auto"
               />
             </Link>
@@ -204,7 +204,7 @@ export default function Header() {
                 
                 <img
                   alt="Logo"
-                  src='/images/logo.png'
+                  src='/images/logo.svg'
                   className="h-12 w-auto"
                 />
               </Link>
