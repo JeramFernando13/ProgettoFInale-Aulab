@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react'
 import SessionContext from '../context/SessionContext';
 
 import GenresDropDown from '../components/GenresDorpDown'
-import PlatformsDropDown from "./PlatformsDropDown";
 
 import { Link, useNavigate } from 'react-router'
 import supabase from '../supabase/supabase-client';
@@ -28,7 +27,7 @@ import {
   SquaresPlusIcon,
   XMarkIcon,
 } from '@heroicons/react/24/outline'
-import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
+import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import Searchbar from './SearchBar'
 import {
   Card,
@@ -45,10 +44,9 @@ import {
   DialogFooter,
   Button
 } from "@material-tailwind/react";
-import ThemeToggle from '../components/ThemeToggle';
-import { ToggleGroup } from '@subframe/core/dist/cjs/components/toggle-group';
-import toast from 'react-hot-toast';
 
+import toast from 'react-hot-toast';
+// import logo from '../assets/logo.png';
 
 export default function Header() {
   const navigate = useNavigate;
@@ -106,8 +104,8 @@ export default function Header() {
             <Link to="/" className="-m-1.5 p-1.5">
               <span className="sr-only">Your Company</span>
               <img
-                alt=""
-                src="public/images/logo.png"
+                alt="Logo"
+                src='/images/logo.png'
                 className="h-12 w-auto"
               />
             </Link>
@@ -205,8 +203,8 @@ export default function Header() {
               <Link to="/" className="-m-1.5 p-1.5">
                 
                 <img
-                  alt=""
-                  src="public/images/logo.png"
+                  alt="Logo"
+                  src='/images/logo.png'
                   className="h-12 w-auto"
                 />
               </Link>
