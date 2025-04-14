@@ -34,17 +34,15 @@ export function PlatformPage() {
     return (
         <>
             <div className="grid">
-                <h1 className="text-3xl text-center my-2">Welcome to {platform} page</h1>
+                <h1 className="text-4xl font-bold text-center my-6 text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 drop-shadow-lg">Welcome to {genre} page</h1>
                 {error && <div className="text-red-500">{error}</div>}
                 
-                {data.length > 0 ? (
+                {data && (
                     <div className="flex flex-wrap justify-center gap-6 ">
-                        {data.map((game) => (
-                            <CardGame key={game.id} game={game} />
-                        ))}
+                        {data && data.results.map ( (game) => <CardGame key={game.id} 
+                            game={game}/>
+                        )}
                     </div>
-                ) : (
-                    <p className="text-center text-gray-500">Nessun gioco trovato per questa piattaforma.</p>
                 )}
             </div>
         </>

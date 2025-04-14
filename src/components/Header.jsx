@@ -46,7 +46,6 @@ import {
 } from "@material-tailwind/react";
 
 import toast from 'react-hot-toast';
-// import logo from '../assets/logo.png';
 
 export default function Header() {
   const navigate = useNavigate;
@@ -77,10 +76,10 @@ export default function Header() {
     let lastScrollY = window.scrollY;
     const handleScroll = () => {
       if (window.scrollY > lastScrollY) {
-        // Nascondi la navbar quando si scorre verso il basso
+
         setShowNavbar(false);
       } else {
-        // Mostra la navbar quando si scorre verso l'alto
+
         setShowNavbar(true);
       }
       lastScrollY = window.scrollY;
@@ -101,7 +100,7 @@ export default function Header() {
         <nav aria-label="Global" className={`navbar navCust mx-auto flex max-w items-center justify-between p-6 lg:px-8 ${showNavbar ? "visible" : "hidden"}`}>
           {/* logo  */}
           <div className="flex lg:flex-1">
-            <Link to="/" className="-m-1.5 p-1.5">
+            <Link to="/" className="-m-1.5 p-1.5" onClick={() => setMobileMenuOpen(false)}>
               <span className="sr-only">Your Company</span>
               <img
                 alt="Logo"
@@ -144,7 +143,7 @@ export default function Header() {
                   <div className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm/6 hover:bg-gray-50">
                       
                     <div className="flex-auto">
-                      <Link to='/account' className="block font-semibold text-gray-900">
+                      <Link to='/account' className="block font-semibold text-gray-900" onClick={() => setMobileMenuOpen(false)}>
                         Account Settings
                         <span className="absolute inset-0" />
                       </Link>
@@ -155,7 +154,7 @@ export default function Header() {
                     
                     <div className="flex-auto">
                       <button
-                        onClick={() => setIsLogoutOpen(true)}
+                        onClick={() => { setIsLogoutOpen(true); setMobileMenuOpen(false); }}
                         className="block font-semibold text-red-500 transition duration-300 ease-in-out hover:scale-105 hover:text-red-600 "
                       >
                         Log Out
@@ -168,7 +167,7 @@ export default function Header() {
                   <div className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm/6 hover:bg-gray-50">
                     
                     <div className="flex-auto">
-                      <Link to="/login" className="block font-semibold text-gray-900">
+                      <Link to="/login" className="block font-semibold text-gray-900" onClick={() => setMobileMenuOpen(false)}>
                         Login
                         <span className="absolute inset-0" />
                       </Link>
@@ -177,7 +176,7 @@ export default function Header() {
                   <div className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm/6  hover:bg-gray-50 ">
                     
                     <div className="flex-auto">
-                      <Link to="/register" className="block font-semibold text-gray-900">
+                      <Link to="/register" className="block font-semibold text-gray-900" onClick={() => setMobileMenuOpen(false)}>
                         Sign Up
                         <span className="absolute inset-0" />
                       </Link>
@@ -198,9 +197,9 @@ export default function Header() {
         {/* on mobile  */}
         <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
           <div className="fixed inset-0 z-10" />
-          <DialogPanel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+          <DialogPanel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-black-900">
             <div className="flex items-center justify-between">
-              <Link to="/" className="-m-1.5 p-1.5">
+              <Link to="/" className="-m-1.5 p-1.5" onClick={() => setMobileMenuOpen(false)}>
                 
                 <img
                   alt="Logo"
@@ -246,7 +245,7 @@ export default function Header() {
                     </ListItem>
                 
                     <AccordionBody className="py-1">
-                    <GenresDropDown />
+                    <GenresDropDown  />
                     </AccordionBody>
                   </Accordion>
 
@@ -273,17 +272,18 @@ export default function Header() {
                       <PlatformsDropDown />
                     </AccordionBody>
                   </Accordion> */}
+                  
                   <hr className="my-2 border-blue-gray-50" />
                 </List>
 
                 {session ? (
                   <div className="py-6">
-                      {/* da fare la modale  */}
-                      <Link to="/account" className="text-grey-900 -mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">
+                      
+                      <Link to="/account" className="text-grey-900 -mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50" onClick={() => setMobileMenuOpen(false)}>
                       Account Setting
                     </Link>
                     <button
-                      onClick={() => setIsLogoutOpen(true)}
+                      onClick={() => { setIsLogoutOpen(true); setMobileMenuOpen(false); }}
                       className="w-full text-left text-red-500 -mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50 hover:text-center transition duration-300 ease-in-out hover:scale-105 hover:text-red-600"
                     >
                       Logout
@@ -292,10 +292,10 @@ export default function Header() {
                 ) : ( 
                   
                   <div className="py-6">
-                    <Link to="/login" className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">
+                    <Link to="/login" className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50" onClick={() => setMobileMenuOpen(false)}>
                       Login
                     </Link>
-                    <Link to="/register" className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">
+                    <Link to="/register" className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50" onClick={() => setMobileMenuOpen(false)}>
                       Sign Up
                     </Link>
                   </div>
@@ -304,6 +304,7 @@ export default function Header() {
             </div>
           </DialogPanel>
         </Dialog>
+
        {/* confirm log out  */}
         <MTDialog open={isLogoutOpen} handler={() => setIsLogoutOpen(false)}>
           <DialogHeader>Confirm Logout</DialogHeader>

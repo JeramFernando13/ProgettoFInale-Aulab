@@ -45,19 +45,20 @@ export default function GenresDropDown() {
         {error && <small>{error}</small> }
         <ul className="p-0">
           <List>
-             {genres && genres.results.map((genre) => (
-               <ListItem key= {genre.id}>
-            {/* <ListItemPrefix>
-              <Avatar variant="circular" src={genre.background_image} alt={genre.name}/>
-              </ListItemPrefix> */}
-            <div>
-              <Typography variant="h6" color="blue-gray">
-                <Link to={`/games/${genre.slug}`}>{genre.name}</Link>
-                
-              </Typography>
+            {genres && genres.results.map((genre) => (
+            <Link to={`/games/${genre.slug}`}>
+              <ListItem key= {genre.id}>
+                {/* <ListItemPrefix>
+                <Avatar variant="circular" src={genre.background_image} alt={genre.name}/>
+                </ListItemPrefix> */}
               
-            </div>
-          </ListItem>
+                <Typography variant="h6" color="blue-gray">
+                  {genre.name}
+                
+                </Typography>
+              
+              </ListItem>
+            </Link>
             ))}
             </List>
         </ul>

@@ -8,6 +8,7 @@ export default function HomePage() {
     return (
         <>
             <div className="grid">
+                
                 <h1 className="text-4xl font-bold text-center my-6 text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 drop-shadow-lg">
                    Welcome to Rehacktor Gaming 
                 </h1>
