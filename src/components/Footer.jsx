@@ -9,27 +9,19 @@ const Footer = () => {
           <h3 className="mt-8 text-base leading-6 text-center text-gray-400">
           Rehacktor
         </h3>
-            <a href="#" className="text-base leading-6 text-gray-500 hover:text-gray-900">
-              About
+            <a href="https://www.linkedin.com/in/jeram-fernando-developer/" target='_blank' className="text-base leading-6 text-gray-500 hover:text-gray-900">
+              Jeram Fernando 
             </a>
           </div>
           {/* Aggiungi gli altri link qui seguendo lo stesso schema */}
         </footer>
         <div className="flex justify-center mt-8 space-x-6">
-          <a href="#" className="text-gray-400 hover:text-gray-500">
-            <span className="sr-only">Facebook</span>
-            <svg className="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 24 24">
-              {/* Inserisci il percorso dell'icona qui */}
-            </svg>
-          </a>
+          
           {/* Aggiungi le altre icone social qui seguendo lo stesso schema */}
         </div>
-        <p className="mt-8 text-base leading-6 text-center text-gray-400">
-          © 2025 NomeAzienda, Inc. Tutti i diritti riservati.
-        </p>
+       
       </div>
     </section>
   );
 };
-
 export default Footer;
