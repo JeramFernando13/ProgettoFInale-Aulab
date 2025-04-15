@@ -120,11 +120,11 @@ export default function Header() {
             <button
               type="button"
               onClick={() => setMobileMenuOpen(true)}
-              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
-            >
+              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
               <span className="sr-only">Open main menu</span>
-              <Bars3Icon aria-hidden="true" className="size-6" />
-            </button>
+              <Bars3Icon aria-hidden="true" className="size-6"   />
+            </button> 
+            
           </div>
 
           {/* Account  */}
@@ -201,11 +201,7 @@ export default function Header() {
             <div className="flex items-center justify-between">
               <Link to="/" className="-m-1.5 p-1.5" onClick={() => setMobileMenuOpen(false)}>
                 
-                <img
-                  alt="Logo"
-                  src='/images/logo.svg'
-                  className="h-12 w-auto"
-                />
+                
               </Link>
               <button
                 type="button"
@@ -219,6 +215,7 @@ export default function Header() {
             
             <div className="mt-6 flow-root">
               <div className="-my-6 divide-y divide-gray-500/10">
+               
                 <div className="space-y-2 py-6">
                   <Searchbar />
                 </div>
