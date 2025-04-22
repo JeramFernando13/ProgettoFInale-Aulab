@@ -8,6 +8,7 @@ import RegisterPage from '../pages/register/RegisterPage';
 // import {PlatformPage} from '../pages/platformpage/PlatformPage'
 import LoginPage from '../pages/login/LoginPage';
 import AccountPage from '../pages/account/AccountPage';
+import FavoritePage from '../pages/favorite/FavoritePage';
 
 export function Routing(){
     return(
@@ -25,6 +26,7 @@ export function Routing(){
                         {/* <Route path='/games/:platform' element= {<PlatformPage /> } /> */}
                     
                         <Route path="/search" element={<SearchPage />} />
+                        <Route path='/favorites' element={<FavoritePage />} />
                     
                         <Route path="/register" element={<RegisterPage />}/>
                         <Route path="/login" element={<LoginPage />}/>

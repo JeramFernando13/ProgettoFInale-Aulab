@@ -10,27 +10,19 @@ import supabase from '../supabase/supabase-client';
 import {
   Dialog,
   DialogPanel,
-  Disclosure,
-  DisclosureButton,
-  DisclosurePanel,
+  
   Popover,
   PopoverButton,
   PopoverGroup,
   PopoverPanel,
 } from '@headlessui/react'
 import {
-  ArrowPathIcon,
   Bars3Icon,
-  ChartPieIcon,
-  CursorArrowRaysIcon,
-  FingerPrintIcon,
-  SquaresPlusIcon,
   XMarkIcon,
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import Searchbar from './SearchBar'
 import {
-  Card,
   Typography,
   List,
   ListItem,
@@ -145,6 +137,16 @@ export default function Header() {
                     <div className="flex-auto">
                       <Link to='/account' className="block font-semibold text-gray-900" onClick={() => setMobileMenuOpen(false)}>
                         Account Settings
+                        <span className="absolute inset-0" />
+                      </Link>
+                    </div>
+                  </div>
+
+                  <div className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm/6 hover:bg-gray-50">
+                      
+                    <div className="flex-auto">
+                      <Link to='/favorites' className="block font-semibold text-gray-900" onClick={() => setMobileMenuOpen(false)}>
+                        Favorites
                         <span className="absolute inset-0" />
                       </Link>
                     </div>
@@ -276,25 +278,32 @@ export default function Header() {
                 {session ? (
                   <div className="py-6">
                       
-                      <Link to="/account" className="text-grey-900 -mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50" onClick={() => setMobileMenuOpen(false)}>
+                    <Link to="/account" className="text-grey-900 -mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50" onClick={() => setMobileMenuOpen(false)}>
                       Account Setting
                     </Link>
+
+                    <Link to="/favorites" className="text-grey-900 -mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50" onClick={() => setMobileMenuOpen(false)}>
+                      Favorites
+                    </Link>
+
                     <button
                       onClick={() => { setIsLogoutOpen(true); setMobileMenuOpen(false); }}
-                      className="w-full text-left text-red-500 -mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50 hover:text-center transition duration-300 ease-in-out hover:scale-105 hover:text-red-600"
-                    >
+                      className="w-full text-left text-red-500 -mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50 hover:text-center transition duration-300 ease-in-out hover:scale-105 hover:text-red-600">
                       Logout
                     </button>
                   </div>
                 ) : ( 
                   
                   <div className="py-6">
+
                     <Link to="/login" className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50" onClick={() => setMobileMenuOpen(false)}>
                       Login
                     </Link>
+
                     <Link to="/register" className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50" onClick={() => setMobileMenuOpen(false)}>
                       Sign Up
                     </Link>
+
                   </div>
                 )}
               </div>
