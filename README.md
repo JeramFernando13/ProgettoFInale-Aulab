@@ -22,12 +22,12 @@ Tailwind CSS, Material Tailwind, UIverse per i form, Toast per gli alert e un lo
 
 ## User Interactions
 
-1. Utente non autenticato può navigare sul sito e guardare i generi, ma non può compiere azioni salvate
-2. Utente non autenticato può cercare giochi per nome
-3. Utente non autenticato può registrarsi
-4. Utente autenticato può creare lista di giochi preferiti
-5. Utente autenticato può scrivere nella live chat
-6. Utente autenticato può modificare il profilo
+1. L'Utente non autenticato può navigare sul sito e guardare i generi, ma non può compiere azioni salvate
+2. L'Utente non autenticato può cercare giochi per nome
+3. L'Utente non autenticato può registrarsi
+4. L'Utente non autenticato può scrivere nella live chat
+5. L'Utente autenticato può creare lista di giochi preferiti
+6. L'Utente autenticato può modificare il profilo
 
 ## Context
 
